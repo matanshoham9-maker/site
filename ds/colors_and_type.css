@@ -1,0 +1,344 @@
+/* ================================================================
+   Course It Design System · 2026
+   colors_and_type.css
+   ================================================================ */
+
+/* --- Webfont declarations ------------------------------------- */
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/CormorantGaramond-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/CormorantGaramond-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/CormorantGaramond-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/CormorantGaramond-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'David Libre';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/DavidLibre-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'David Libre';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/DavidLibre-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/DMSans-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/DMSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/DMSans-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/DMSans-LightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/DMSans-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/Heebo-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Heebo-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/Heebo-Medium.ttf') format('truetype');
+}
+
+/* Press Start 2P + Heebo loaded from Google Fonts CDN.
+   Heebo 700 is the Hebrew headline weight (replaces David Libre /
+   Frank Ruhl Libre per a brand-owner directive). Self-hosted Heebo
+   TTFs below still serve 300/400/500 if the CDN is unreachable. */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Heebo:wght@300;400;500;700;800&display=swap');
+
+
+/* --- Brand tokens --------------------------------------------- */
+
+:root {
+  /* ---- Core palette ---- */
+  --ci-white:       #FFFFFF;
+  --ci-paper:       #FAF8F3;   /* soft off-white used sparingly */
+  --ci-deep-blue:   #024BB9;   /* dominant dark sections, buttons */
+  --ci-deep-blue-2: #023A91;   /* hover / pressed deeper blue */
+  --ci-sky:         #B7D4F5;   /* tint of sky, soft blobs only  */
+  --ci-lime:        #CCFF00;   /* the accent */
+  --ci-lime-ink:    #0A0A0A;   /* text on lime is always near-black */
+  --ci-field:       #4A7A3A;   /* field green */
+  --ci-field-2:     #355B28;   /* deeper field */
+  --ci-cloud:       #ECF1EC;   /* soft natural neutral */
+  --ci-black:       #0A0A0A;
+  --ci-ink:         #0A0A0A;   /* alias for body text */
+  --ci-ink-soft:    rgba(10,10,10,0.62);
+  --ci-ink-faint:   rgba(10,10,10,0.38);
+  --ci-line:        rgba(10,10,10,0.12);
+  --ci-line-strong: rgba(10,10,10,0.22);
+  --ci-on-blue:     #FFFFFF;
+  --ci-on-blue-soft: rgba(255,255,255,0.72);
+  --ci-on-blue-line: rgba(255,255,255,0.16);
+
+  /* Heart red — LOGO ONLY. Never use this in UI. */
+  --ci-heart-red:   #CC1122;
+
+  /* ---- Semantic surfaces ---- */
+  --ci-bg:          var(--ci-white);
+  --ci-bg-dark:     var(--ci-deep-blue);
+  --ci-bg-darker:   var(--ci-black);
+  --ci-bg-soft:     var(--ci-cloud);
+  --ci-fg:          var(--ci-ink);
+  --ci-fg-soft:     var(--ci-ink-soft);
+  --ci-fg-faint:    var(--ci-ink-faint);
+  --ci-border:      var(--ci-line);
+
+  /* ---- Type families ---- */
+  --ci-serif:       'Cormorant Garamond', Georgia, serif;
+  /* Hebrew headlines are SANS — Heebo 700. The variable keeps the
+     `-he` suffix for symmetry, but it points at the sans family now. */
+  --ci-serif-he:    'Heebo', system-ui, sans-serif;
+  --ci-sans:        'DM Sans', 'Heebo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ci-sans-he:     'Heebo', 'DM Sans', system-ui, sans-serif;
+  --ci-pixel:       'Press Start 2P', 'Courier New', monospace;
+
+  /* ---- Type scale (editorial — fluid)  ---- */
+  --ci-display:     clamp(56px, 9.5vw, 168px);   /* hero "Every creator…" */
+  --ci-h1:          clamp(44px, 6.2vw, 112px);
+  --ci-h2:          clamp(32px, 4.0vw, 72px);
+  --ci-h3:          clamp(24px, 2.6vw, 44px);
+  --ci-h4:          20px;
+  --ci-lead:        clamp(18px, 1.4vw, 22px);
+  --ci-body:        16px;
+  --ci-small:       14px;
+  --ci-micro:       12px;
+  --ci-pixel-label: 10px;     /* Press Start 2P only goes this small */
+
+  /* ---- Spacing (8pt grid, generous) ---- */
+  --ci-s-0:    0;
+  --ci-s-1:    4px;
+  --ci-s-2:    8px;
+  --ci-s-3:    12px;
+  --ci-s-4:    16px;
+  --ci-s-5:    24px;
+  --ci-s-6:    32px;
+  --ci-s-7:    48px;
+  --ci-s-8:    64px;
+  --ci-s-9:    96px;
+  --ci-s-10:   120px;
+  --ci-s-11:   160px;
+  --ci-s-12:   200px;
+
+  --ci-gutter: 24px;
+  --ci-margin-desktop: 56px;
+  --ci-margin-mobile:  20px;
+  --ci-section-desktop: 120px;
+  --ci-section-mobile:  64px;
+
+  /* ---- Radii ---- */
+  --ci-r-0:   0;
+  --ci-r-sm:  6px;
+  --ci-r-md:  12px;
+  --ci-r-lg:  16px;     /* default for cards */
+  --ci-r-xl:  24px;
+  --ci-r-pill: 999px;   /* default for buttons */
+
+  /* ---- Borders ---- */
+  --ci-border-thin:   1px solid var(--ci-line);
+  --ci-border-base:   1.5px solid var(--ci-line);
+  --ci-border-strong: 2px solid var(--ci-black);
+
+  /* ---- Shadows — editorial: subtle, never glossy ---- */
+  --ci-shadow-0: none;
+  --ci-shadow-1: 0 1px 2px rgba(10,10,10,0.04), 0 2px 6px rgba(10,10,10,0.03);
+  --ci-shadow-2: 0 4px 14px rgba(10,10,10,0.06), 0 1px 3px rgba(10,10,10,0.04);
+  --ci-shadow-3: 0 18px 40px -16px rgba(10,10,10,0.18);
+  --ci-shadow-blue: 0 18px 50px -20px rgba(2,75,185,0.4);
+
+  /* ---- Motion ---- */
+  --ci-ease:        cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ci-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ci-dur-fast:    140ms;
+  --ci-dur-base:    240ms;
+  --ci-dur-slow:    400ms;
+}
+
+
+/* --- Base + semantic typography ------------------------------- */
+
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: var(--ci-sans);
+  font-size: var(--ci-body);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ci-fg);
+  background: var(--ci-bg);
+}
+
+/* Headlines — editorial serif. The rule: upright black + italic blue. */
+.ci-display,
+.ci-h1, .ci-h2, .ci-h3 {
+  font-family: var(--ci-serif);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--ci-fg);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.ci-display { font-size: var(--ci-display); line-height: 0.92; letter-spacing: -0.02em; }
+.ci-h1      { font-size: var(--ci-h1); }
+.ci-h2      { font-size: var(--ci-h2); }
+.ci-h3      { font-size: var(--ci-h3); line-height: 1.05; }
+.ci-h4 {
+  font-family: var(--ci-sans);
+  font-size: var(--ci-h4);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+/* THE rule — the accented (blue) word is always italic. */
+.ci-accent,
+.ci-display .ci-accent,
+.ci-h1 .ci-accent,
+.ci-h2 .ci-accent,
+.ci-h3 .ci-accent {
+  font-style: italic;
+  color: var(--ci-deep-blue);
+  font-weight: 600;
+}
+
+/* On dark sections, accent flips to lime. */
+.ci-on-dark .ci-accent { color: var(--ci-lime); }
+
+/* Body & meta */
+.ci-lead   { font-size: var(--ci-lead); line-height: 1.45; color: var(--ci-fg-soft); }
+.ci-body   { font-size: var(--ci-body); line-height: 1.55; }
+.ci-small  { font-size: var(--ci-small); line-height: 1.5; }
+.ci-micro  { font-size: var(--ci-micro); line-height: 1.4; color: var(--ci-fg-soft); }
+
+/* Eyebrows / small labels — pixel allowed only here and in the logo */
+.ci-eyebrow {
+  font-family: var(--ci-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ci-field);
+}
+.ci-eyebrow--pixel {
+  font-family: var(--ci-pixel);
+  font-size: var(--ci-pixel-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Dark-section flips */
+.ci-on-dark        { color: var(--ci-on-blue); background: var(--ci-deep-blue); }
+.ci-on-dark .ci-lead  { color: var(--ci-on-blue-soft); }
+.ci-on-dark .ci-micro { color: var(--ci-on-blue-soft); }
+.ci-on-dark .ci-eyebrow { color: var(--ci-lime); }
+
+
+/* --- Hebrew variants ------------------------------------------ */
+
+[dir="rtl"], .ci-he {
+  font-family: var(--ci-sans-he);
+}
+[dir="rtl"] .ci-display,
+[dir="rtl"] .ci-h1,
+[dir="rtl"] .ci-h2,
+[dir="rtl"] .ci-h3,
+.ci-he.ci-display,
+.ci-he.ci-h1,
+.ci-he.ci-h2,
+.ci-he.ci-h3 {
+  font-family: var(--ci-serif-he);
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.015em;   /* Heebo benefits from a slight tightening at display sizes */
+  line-height: 1.0;
+}
+[dir="rtl"] .ci-accent,
+.ci-he .ci-accent {
+  font-style: normal;       /* Hebrew has no italic; use color only */
+  color: var(--ci-deep-blue);
+  font-weight: 700;
+}
+
+
+/* --- Utility helpers used by previews ------------------------- */
+
+.ci-stack-tight > * + * { margin-top: var(--ci-s-2); }
+.ci-stack       > * + * { margin-top: var(--ci-s-4); }
+.ci-stack-loose > * + * { margin-top: var(--ci-s-6); }
+
+/* Journal dark-mode tokens (added for Course It Journal articles) */
+:root{
+  --ci-journal-navy:#0A1A2E;
+  --ci-journal-deep:#050E1C;
+  --ci-journal-fg:#F0EEE9;
+  --ci-journal-fg-soft:rgba(240,238,233,0.65);
+  --ci-journal-fg-faint:rgba(240,238,233,0.45);
+  --ci-journal-line:rgba(240,238,233,0.12);
+}

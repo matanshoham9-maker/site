@@ -1,0 +1,112 @@
+/* ================================================================
+   Course It · shared/chrome.css
+   Shared site chrome — sticky header (lockup + nav) and full footer.
+   Used by every public surface (marketing-site, creator pages, …).
+   Pairs with colors_and_type.css + components.css. No tokens defined
+   here — layout only, all values reference system tokens.
+   ================================================================ */
+
+/* --- Sticky header / nav ------------------------------------- */
+.ci-siteheader {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--ci-margin-desktop);
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ci-line);
+}
+.ci-siteheader__nav { display: flex; gap: 36px; align-items: center; }
+.ci-siteheader__nav a {
+  color: var(--ci-ink);
+  font-size: 14px; font-weight: 400;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.ci-siteheader__nav a:hover { color: var(--ci-deep-blue); }
+.ci-siteheader__nav a[aria-current="page"] {
+  color: var(--ci-deep-blue);
+  font-style: italic;
+  font-family: var(--ci-serif);
+  font-weight: 600;
+  font-size: 16px;
+}
+/* Hebrew current-link: no italic (Hebrew has no italic) */
+[dir="rtl"] .ci-siteheader__nav a[aria-current="page"] {
+  font-style: normal;
+  font-family: var(--ci-serif-he);
+  font-weight: 700;
+}
+
+/* Dark / Journal header — navy translucent, Cloud-Dancer lockup, Lime hover */
+.ci-siteheader--dark {
+  background: rgba(10,26,46,0.6);
+  border-bottom: 1px solid var(--ci-journal-line);
+}
+.ci-siteheader--dark .ci-lockup__name { color: var(--ci-journal-fg); }
+.ci-siteheader--dark .ci-siteheader__nav a { color: var(--ci-journal-fg); }
+.ci-siteheader--dark .ci-siteheader__nav a:hover { color: var(--ci-lime); }
+.ci-siteheader--dark .ci-siteheader__nav a[aria-current="page"] { color: var(--ci-lime); }
+
+
+/* --- Footer --------------------------------------------------- */
+.ci-sitefooter {
+  background: var(--ci-white); color: var(--ci-ink);
+  padding: 96px var(--ci-margin-desktop) 56px;
+  border-top: 1.5px solid var(--ci-line);
+}
+.ci-sitefooter__inner { max-width: 1280px; margin: 0 auto; }
+.ci-sitefooter__top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px;
+  padding-bottom: 64px; border-bottom: 1px dotted var(--ci-line-strong);
+}
+.ci-sitefooter__brand h3 {
+  font-family: var(--ci-serif); font-weight: 600; font-size: 44px;
+  line-height: 1; margin: 22px 0 18px; letter-spacing: -0.01em;
+}
+.ci-sitefooter__brand h3 em { font-style: italic; color: var(--ci-deep-blue); }
+.ci-sitefooter__brand p { font-size: 14px; color: var(--ci-fg-soft); max-width: 360px; line-height: 1.55; margin: 0; }
+.ci-sitefooter__col h5 {
+  font-family: var(--ci-sans); font-size: 12px; font-weight: 500;
+  color: var(--ci-field); margin: 0 0 18px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+.ci-sitefooter__col a {
+  display: block; color: var(--ci-ink); text-decoration: none; font-size: 14px;
+  padding: 6px 0;
+}
+.ci-sitefooter__col a:hover { color: var(--ci-deep-blue); }
+.ci-sitefooter__bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; font-size: 12px; color: var(--ci-fg-faint);
+}
+
+/* Hebrew footer headline → Heebo, no italic */
+[dir="rtl"] .ci-sitefooter__brand h3 { font-family: var(--ci-serif-he); font-weight: 700; }
+[dir="rtl"] .ci-sitefooter__brand h3 em { font-style: normal; }
+
+/* Dark / Journal footer — deeper navy, Cloud-Dancer text, Lime accents */
+.ci-sitefooter--dark {
+  background: var(--ci-journal-deep);
+  color: var(--ci-journal-fg);
+  border-top: 1px solid var(--ci-journal-line);
+}
+.ci-sitefooter--dark .ci-sitefooter__brand h3 em { color: var(--ci-lime); }
+.ci-sitefooter--dark .ci-sitefooter__brand p { color: var(--ci-journal-fg-soft); }
+.ci-sitefooter--dark .ci-sitefooter__top { border-bottom-color: var(--ci-journal-line); }
+.ci-sitefooter--dark .ci-sitefooter__col h5 { color: var(--ci-lime); }
+.ci-sitefooter--dark .ci-sitefooter__col a { color: var(--ci-journal-fg); }
+.ci-sitefooter--dark .ci-sitefooter__col a:hover { color: var(--ci-lime); }
+.ci-sitefooter--dark .ci-sitefooter__bottom { color: var(--ci-journal-fg-faint); }
+
+
+/* --- Responsive ----------------------------------------------- */
+@media (max-width: 900px) {
+  .ci-siteheader { padding: 16px var(--ci-margin-mobile); }
+  .ci-siteheader__nav { gap: 18px; }
+  .ci-sitefooter { padding-left: var(--ci-margin-mobile); padding-right: var(--ci-margin-mobile); }
+  .ci-sitefooter__top { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 560px) {
+  .ci-siteheader__nav { display: none; }
+}

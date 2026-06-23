@@ -1,0 +1,309 @@
+/* ================================================================
+   Course It · article-page/article.css
+   The Article Page Template — DARK "Journal" reading mode.
+   Kinfolk / Aeon editorial: asymmetric 12-col grid, drop cap, magazine
+   numbering, chapter markers, end ornament. Layout only — all colour,
+   type and spacing reference colors_and_type.css tokens.
+
+   LANGUAGE RULE (system-wide): Cormorant italic = English frame only
+   (deks, "No. 01", Roman numerals, ornaments). Hebrew emphasis = Heebo
+   bold + Lime. Never Cormorant on Hebrew — including the drop cap.
+   ================================================================ */
+
+.ar {
+  background: var(--ci-journal-navy);
+  color: var(--ci-journal-fg);
+  min-height: 100vh;
+}
+.ar-wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 var(--ci-margin-desktop); }
+
+/* A narrow, RIGHT-offset reading measure (RTL asymmetry).
+   In RTL, inline-start = right; auto on the END (left) hugs the block right. */
+.ar-measure { max-width: 680px; margin-inline-start: 0; margin-inline-end: auto; text-align: start; }
+
+/* English frame helper — force LTR + Cormorant italic + Lime */
+.ar-en {
+  direction: ltr; unicode-bidi: isolate;
+  font-family: var(--ci-serif); font-style: italic; color: var(--ci-lime);
+}
+
+.ar-sec { padding: var(--ci-s-9) 0; }
+.ar-sec--tight { padding: var(--ci-s-7) 0; }
+
+
+/* --- 01 · Issue banner --------------------------------------- */
+.ar-issue { text-align: center; padding-top: var(--ci-s-9); }
+.ar-issue__line {
+  direction: ltr;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: var(--ci-h4); color: var(--ci-lime);
+  letter-spacing: 0.01em;
+}
+.ar-issue__rule {
+  width: 56px; height: 1px; background: var(--ci-journal-line);
+  border: 0; margin: var(--ci-s-5) auto 0;
+}
+
+
+/* --- 02 · Article opener ------------------------------------- */
+.ar-opener { padding-top: var(--ci-s-7); }
+.ar-opener__inner { max-width: 920px; margin-inline-start: 0; margin-inline-end: auto; }
+.ar-opener__cat {
+  font-family: var(--ci-sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ci-lime);
+  margin: 0 0 var(--ci-s-5);
+}
+.ar-title {
+  font-family: var(--ci-serif-he); font-weight: 800;
+  font-size: clamp(54px, 7vw, 108px); line-height: 1.04;
+  letter-spacing: -0.02em; color: var(--ci-journal-fg);
+  margin: 0;
+}
+.ar-title span { display: block; }
+/* Dek is HEBREW content — Heebo light, RTL, right-aligned, sits to the right */
+.ar-dek {
+  direction: rtl; text-align: start;
+  font-family: var(--ci-sans-he); font-weight: 300;
+  font-size: clamp(18px, 2.2vw, 26px); line-height: 1.55; letter-spacing: 0;
+  color: rgba(240,238,233,0.65); max-width: 600px;
+  margin: var(--ci-s-6) 0 0;
+}
+.ar-opener__meta {
+  margin-top: var(--ci-s-7); padding-top: var(--ci-s-5);
+  border-top: 1px solid var(--ci-journal-line);
+  font-family: var(--ci-sans); font-size: 13px;
+  letter-spacing: 0.06em; color: var(--ci-journal-fg-soft);
+  direction: ltr; text-align: right;
+}
+
+
+/* --- 03 · Hero image (asymmetric + vertical caption) --------- */
+.ar-hero__grid { display: grid; grid-template-columns: 11fr 1fr; gap: var(--ci-s-5); align-items: stretch; }
+.ar-hero__img { aspect-ratio: 16 / 10; }
+.ar-hero__cap {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  direction: ltr;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: 14px; color: var(--ci-journal-fg-soft);
+  align-self: end; padding-bottom: 4px; white-space: nowrap;
+}
+
+
+/* --- 04 · Lede + drop cap ------------------------------------ */
+.ar-lede { padding-top: var(--ci-s-8); }
+.ar-lede__p {
+  font-family: var(--ci-sans-he); font-weight: 300;
+  font-size: clamp(20px, 1.7vw, 24px); line-height: 1.75;
+  color: var(--ci-journal-fg); margin: 0;
+}
+.ar-dropcap {
+  float: right; margin: 10px 0 0 14px;
+  font-family: var(--ci-serif-he); font-weight: 800;
+  font-size: 88px; line-height: 0.66; color: var(--ci-lime);
+}
+
+
+/* --- 05 · Chapter marker ------------------------------------- */
+.ar-chapter { display: flex; align-items: baseline; gap: var(--ci-s-4); margin: var(--ci-s-8) 0 var(--ci-s-5); }
+.ar-chapter__roman {
+  direction: ltr;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: 24px; color: var(--ci-lime); flex: none;
+}
+.ar-chapter__title {
+  font-family: var(--ci-serif-he); font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 28px); color: var(--ci-journal-fg);
+  margin: 0; flex: none; white-space: nowrap;
+}
+.ar-chapter__rule { flex: 1; height: 1px; background: var(--ci-journal-line); align-self: center; }
+
+
+/* --- 06 · Body text ----------------------------------------- */
+.ar-body__p {
+  font-family: var(--ci-sans-he); font-weight: 300;
+  font-size: 17px; line-height: 1.95; color: var(--ci-journal-fg);
+  margin: 0 0 var(--ci-s-6);
+}
+.ar-body__p:last-child { margin-bottom: 0; }
+/* Hebrew emphasis — Heebo bold + Lime (never Cormorant) */
+.ar-body__p strong, .ar-em { font-weight: 700; color: var(--ci-lime); font-style: normal; }
+
+
+/* --- 07 · Asymmetric figures (Kinfolk: image + caption SIDE BY SIDE) ---
+   Flex (not grid-column) so the side-by-side survives every renderer.
+   Caption is bottom-aligned to the image; the space above it is intentional. */
+.ar-figure {
+  display: flex; direction: ltr; align-items: flex-end;
+  justify-content: space-between; gap: var(--ci-gutter); margin: var(--ci-s-9) 0;
+}
+.ar-figure--b { flex-direction: row-reverse; }
+.ar-figure__img { flex: 0 0 57%; aspect-ratio: 4 / 5; }
+.ar-figure__cap { flex: 0 0 31%; padding-bottom: 6px; text-align: right; }
+.ar-figure__no {
+  direction: ltr; unicode-bidi: isolate; text-align: right;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: 18px; color: var(--ci-lime); display: block; margin-bottom: 12px;
+}
+.ar-figure__text {
+  direction: rtl; text-align: right; display: block;
+  font-family: var(--ci-sans-he); font-weight: 300;
+  font-size: 14px; line-height: 1.55; color: var(--ci-journal-fg-soft);
+}
+
+
+/* --- 08 · Pull quote ---------------------------------------- */
+.ar-quote { max-width: 760px; margin-inline-start: 0; margin-inline-end: auto; padding: var(--ci-s-7) 0; text-align: start; }
+.ar-quote__mark {
+  text-align: start;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: 80px; line-height: 0.4; color: var(--ci-lime); opacity: 0.7;
+  display: block; height: 44px;
+}
+.ar-quote__q {
+  font-family: var(--ci-sans-he); font-weight: 400;
+  font-size: clamp(26px, 3vw, 36px); line-height: 1.4;
+  color: var(--ci-journal-fg); margin: 0 0 var(--ci-s-5);
+}
+.ar-quote__q strong { font-weight: 700; color: var(--ci-lime); }
+.ar-quote__by {
+  direction: ltr; unicode-bidi: isolate; text-align: right; display: block;
+  font-family: var(--ci-sans); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ci-lime);
+}
+
+
+/* --- 09 · End ornament -------------------------------------- */
+.ar-ornament {
+  text-align: center; direction: ltr;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: 24px; color: var(--ci-lime); letter-spacing: 0.4em;
+  padding: var(--ci-s-8) 0;
+}
+
+
+/* --- 10 · Author card --------------------------------------- */
+.ar-author {
+  max-width: 720px; margin: 0 auto; text-align: center;
+  border-top: 1px solid var(--ci-journal-line);
+  border-bottom: 1px solid var(--ci-journal-line);
+  padding: var(--ci-s-7) 0;
+}
+.ar-author__eyebrow {
+  direction: ltr;
+  font-family: var(--ci-sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ci-lime);
+  margin: 0 0 var(--ci-s-3);
+}
+.ar-author__name {
+  direction: ltr;
+  font-family: var(--ci-serif); font-weight: 500; font-style: normal;
+  font-size: var(--ci-h3); color: var(--ci-journal-fg); margin: 0 0 var(--ci-s-4);
+}
+.ar-author__name em { font-style: italic; color: var(--ci-lime); }
+.ar-author__bio {
+  font-family: var(--ci-sans-he); font-weight: 300;
+  font-size: 15px; line-height: 1.8; color: var(--ci-journal-fg-soft);
+  max-width: 52ch; margin: 0 auto;
+}
+
+
+/* --- 11 · CTA ----------------------------------------------- */
+.ar-cta { text-align: center; max-width: 820px; margin: 0 auto; padding: var(--ci-s-9) 0; }
+.ar-cta__eyebrow {
+  direction: ltr;
+  font-family: var(--ci-sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ci-lime);
+  margin: 0 0 var(--ci-s-5);
+}
+.ar-cta__q {
+  font-family: var(--ci-serif-he); font-weight: 700;
+  font-size: clamp(32px, 4vw, 56px); line-height: 1.15;
+  color: var(--ci-journal-fg); margin: 0 0 var(--ci-s-7);
+}
+.ar-cta__q strong { font-weight: 800; color: var(--ci-lime); }
+.ar-cta__row { display: flex; gap: var(--ci-s-4); justify-content: center; flex-wrap: wrap; }
+.ar-btn-outline {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 52px; padding: 0 28px; border-radius: var(--ci-r-pill);
+  background: transparent; color: var(--ci-journal-fg);
+  border: 1.5px solid var(--ci-journal-line);
+  font-family: var(--ci-sans); font-size: 15px; font-weight: 500;
+  text-decoration: none; transition: border-color var(--ci-dur-base) var(--ci-ease), color var(--ci-dur-base) var(--ci-ease);
+}
+.ar-btn-outline:hover { border-color: var(--ci-lime); color: var(--ci-lime); }
+
+
+/* --- 12 · Related articles (deeper band) -------------------- */
+.ar-related { background: var(--ci-journal-deep); padding: var(--ci-s-9) 0; }
+.ar-related__head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--ci-s-5);
+  margin-bottom: var(--ci-s-7); padding-bottom: var(--ci-s-5);
+  border-bottom: 1px solid var(--ci-journal-line);
+  direction: ltr;
+}
+.ar-related__title {
+  font-family: var(--ci-serif); font-weight: 600; font-size: var(--ci-h3);
+  color: var(--ci-journal-fg); margin: 0;
+}
+.ar-related__title em { font-style: italic; color: var(--ci-lime); }
+.ar-related__all {
+  font-family: var(--ci-sans); font-size: 14px; color: var(--ci-lime);
+  text-decoration: none; white-space: nowrap;
+}
+.ar-related__all:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ar-related__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--ci-s-6); }
+.ar-rcard { text-decoration: none; display: flex; flex-direction: column; gap: var(--ci-s-4); }
+.ar-rcard__img { aspect-ratio: 3 / 2; width: 100%; }
+.ar-rcard { text-align: start; }
+.ar-rcard__no {
+  direction: ltr; unicode-bidi: isolate; text-align: right; display: block;
+  font-family: var(--ci-serif); font-style: italic; font-size: 16px; color: var(--ci-lime);
+}
+.ar-rcard__title {
+  font-family: var(--ci-serif-he); font-weight: 700; font-size: 22px;
+  line-height: 1.25; color: var(--ci-journal-fg); margin: 0;
+  transition: color var(--ci-dur-base) var(--ci-ease);
+}
+.ar-rcard:hover .ar-rcard__title { color: var(--ci-lime); }
+.ar-rcard__meta {
+  direction: ltr; unicode-bidi: isolate; text-align: right; display: block;
+  font-family: var(--ci-sans); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ci-journal-fg-faint);
+}
+
+
+/* --- Image placeholders (dark, labeled — never stock) ------- */
+.ar-ph {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px; text-align: center;
+  background-color: var(--ci-journal-deep);
+  background-image:
+    repeating-linear-gradient(-45deg, rgba(240,238,233,0.04) 0, rgba(240,238,233,0.04) 1px, transparent 1px, transparent 11px),
+    linear-gradient(155deg, #0E2742 0%, #0A1A2E 60%, #050E1C 100%);
+  border: 1px solid var(--ci-journal-line);
+  border-radius: var(--ci-r-md); overflow: hidden; padding: 20px;
+}
+.ar-ph__type {
+  font-family: var(--ci-pixel); font-size: var(--ci-pixel-label);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ci-lime);
+}
+.ar-ph__cap {
+  direction: ltr;
+  font-family: var(--ci-serif); font-style: italic;
+  font-size: 12px; color: var(--ci-journal-fg-soft); max-width: 26ch;
+}
+
+
+/* --- Responsive --------------------------------------------- */
+@media (max-width: 900px) {
+  .ar-wrap { padding: 0 var(--ci-margin-mobile); }
+  .ar-sec { padding: var(--ci-s-7) 0; }
+  .ar-measure, .ar-opener__inner, .ar-quote { max-width: none; }
+  .ar-hero__grid { grid-template-columns: 1fr; }
+  .ar-hero__cap { writing-mode: horizontal-tb; align-self: start; padding-top: 8px; }
+  .ar-figure, .ar-figure--b { flex-direction: column; align-items: stretch; }
+  .ar-figure__img { flex: 1 1 auto; }
+  .ar-figure__cap { flex: 1 1 auto; padding-top: 12px; padding-bottom: 0; }
+  .ar-related__grid { grid-template-columns: 1fr; gap: var(--ci-s-7); }
+  .ar-dek { max-width: none; }
+}

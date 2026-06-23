@@ -1,0 +1,12 @@
+# Course It site — Netlify config.
+# האתר כבר סטטי (HTML מוכן) → אין build step. Netlify רק מגיש את הקבצים.
+
+[build]
+  publish = "."
+
+# כותרות אבטחה בסיסיות
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"

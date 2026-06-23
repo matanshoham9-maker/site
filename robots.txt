@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://courseit.studio/sitemap.xml

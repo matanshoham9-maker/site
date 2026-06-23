@@ -1,0 +1,293 @@
+/* ================================================================
+   Course It · components.css
+   Buttons, cards, form fields, badges, links, blobs, dividers.
+   Pair with colors_and_type.css.
+   ================================================================ */
+
+/* --- Buttons -------------------------------------------------- */
+
+.ci-btn {
+  --bg: var(--ci-deep-blue);
+  --fg: #fff;
+  --bd: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: var(--ci-r-pill);
+  background: var(--bg);
+  color: var(--fg);
+  border: 1.5px solid var(--bd);
+  font-family: var(--ci-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--ci-dur-base) var(--ci-ease),
+              color var(--ci-dur-base) var(--ci-ease),
+              border-color var(--ci-dur-base) var(--ci-ease),
+              transform var(--ci-dur-fast) var(--ci-ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.ci-btn:hover  { background: var(--ci-deep-blue-2); }
+.ci-btn:active { transform: translateY(1px); }
+.ci-btn:focus-visible {
+  outline: 2px solid var(--ci-lime);
+  outline-offset: 3px;
+}
+
+/* Lime — secondary accent. Text is always near-black on lime. */
+.ci-btn--lime {
+  --bg: var(--ci-lime);
+  --fg: var(--ci-lime-ink);
+}
+.ci-btn--lime:hover { --bg: #b8e600; }
+
+/* Ghost on light */
+.ci-btn--ghost {
+  --bg: transparent;
+  --fg: var(--ci-ink);
+  --bd: var(--ci-line-strong);
+}
+.ci-btn--ghost:hover { --bg: var(--ci-cloud); --bd: var(--ci-black); }
+
+/* Ghost on dark / blue */
+.ci-btn--ghost-dark {
+  --bg: transparent;
+  --fg: #fff;
+  --bd: rgba(255,255,255,0.4);
+}
+.ci-btn--ghost-dark:hover { --bg: rgba(255,255,255,0.08); --bd: #fff; }
+
+/* Link button — underlined, no chrome */
+.ci-btn--link {
+  height: auto;
+  padding: 0;
+  background: transparent;
+  color: var(--ci-deep-blue);
+  border: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.ci-btn--link:hover { color: var(--ci-black); }
+
+/* Sizes */
+.ci-btn--sm { height: 40px; padding: 0 18px; font-size: 14px; }
+.ci-btn--lg { height: 60px; padding: 0 36px; font-size: 16px; }
+
+/* Icon-only round */
+.ci-icon-btn {
+  width: 44px; height: 44px; padding: 0;
+  border-radius: var(--ci-r-pill);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--ci-cloud); color: var(--ci-ink);
+  border: 0; cursor: pointer;
+  transition: background var(--ci-dur-base) var(--ci-ease);
+}
+.ci-icon-btn:hover { background: #dde3dd; }
+
+
+/* --- Links ---------------------------------------------------- */
+
+.ci-link {
+  color: var(--ci-deep-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color var(--ci-dur-base) var(--ci-ease);
+}
+.ci-link:hover { color: var(--ci-black); }
+.ci-on-dark .ci-link { color: var(--ci-lime); }
+.ci-on-dark .ci-link:hover { color: #fff; }
+
+
+/* --- Badges & tags ------------------------------------------- */
+
+.ci-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: var(--ci-r-pill);
+  background: var(--ci-cloud);
+  color: var(--ci-field-2);
+  font-family: var(--ci-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.ci-tag--field { background: rgba(74,122,58,0.12); color: var(--ci-field-2); }
+.ci-tag--lime  { background: var(--ci-lime); color: var(--ci-lime-ink); }
+.ci-tag--blue  { background: rgba(2,75,185,0.10); color: var(--ci-deep-blue); }
+.ci-tag--ghost { background: transparent; border: 1px solid var(--ci-line); color: var(--ci-ink); }
+.ci-tag--pixel {
+  font-family: var(--ci-pixel);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  height: 24px;
+  padding: 0 10px;
+}
+
+
+/* --- Form fields -------------------------------------------- */
+
+.ci-input,
+.ci-textarea,
+.ci-select {
+  font-family: var(--ci-sans);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ci-ink);
+  background: #fff;
+  border: 1.5px solid var(--ci-line);
+  border-radius: var(--ci-r-md);
+  padding: 14px 16px;
+  width: 100%;
+  transition: border-color var(--ci-dur-base) var(--ci-ease),
+              box-shadow var(--ci-dur-base) var(--ci-ease);
+}
+.ci-input::placeholder,
+.ci-textarea::placeholder { color: var(--ci-fg-faint); }
+.ci-input:hover,
+.ci-textarea:hover,
+.ci-select:hover { border-color: var(--ci-line-strong); }
+.ci-input:focus,
+.ci-textarea:focus,
+.ci-select:focus {
+  outline: 0;
+  border-color: var(--ci-deep-blue);
+  box-shadow: 0 0 0 4px rgba(2,75,185,0.10);
+}
+
+.ci-label {
+  display: block;
+  font-family: var(--ci-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ci-fg);
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+.ci-help {
+  font-size: 12px;
+  color: var(--ci-fg-faint);
+  margin-top: 6px;
+}
+
+.ci-field-inline {
+  display: flex; align-items: center;
+  border: 1.5px solid var(--ci-line);
+  border-radius: var(--ci-r-pill);
+  padding: 6px 6px 6px 20px;
+  background: #fff;
+}
+.ci-field-inline input {
+  border: 0; outline: 0; flex: 1; font: inherit; font-family: var(--ci-sans); font-size: 15px;
+  background: transparent; color: var(--ci-ink);
+}
+.ci-field-inline input::placeholder { color: var(--ci-fg-faint); }
+
+
+/* --- Cards --------------------------------------------------- */
+
+.ci-card {
+  background: #fff;
+  border: 1px solid var(--ci-line);
+  border-radius: var(--ci-r-lg);
+  padding: 24px;
+  transition: transform var(--ci-dur-base) var(--ci-ease),
+              box-shadow var(--ci-dur-base) var(--ci-ease),
+              border-color var(--ci-dur-base) var(--ci-ease);
+}
+.ci-card:hover {
+  border-color: var(--ci-line-strong);
+  box-shadow: var(--ci-shadow-2);
+}
+.ci-card--quiet { border-color: transparent; background: var(--ci-cloud); }
+.ci-card--blue {
+  background: var(--ci-deep-blue);
+  color: #fff;
+  border-color: transparent;
+}
+.ci-card--blue:hover { box-shadow: var(--ci-shadow-blue); }
+.ci-card--lime {
+  background: var(--ci-lime);
+  color: var(--ci-lime-ink);
+  border-color: transparent;
+}
+.ci-card--field {
+  background: var(--ci-field);
+  color: #fff;
+  border-color: transparent;
+}
+
+
+/* --- Dividers ------------------------------------------------ */
+
+.ci-rule       { border: 0; height: 1px; background: var(--ci-line); margin: 0; }
+.ci-rule--ink  { background: var(--ci-black); height: 2px; }
+.ci-rule--dotted {
+  border: 0; height: 0;
+  border-top: 1.5px dotted var(--ci-line-strong);
+  margin: 0;
+}
+
+
+/* --- Soft color blobs (used as background atmosphere) -------- */
+
+.ci-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+.ci-blob--sky   { background: var(--ci-sky); }
+.ci-blob--lime  { background: var(--ci-lime); opacity: 0.35; }
+.ci-blob--field { background: var(--ci-field); opacity: 0.22; }
+
+
+/* --- Logo lockup --------------------------------------------- */
+
+.ci-lockup {
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.ci-lockup__mark { display: block; height: 28px; width: auto; }
+.ci-lockup__name {
+  font-family: var(--ci-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ci-ink);
+  white-space: nowrap;
+  margin-top: 1px;
+}
+.ci-on-dark .ci-lockup__name { color: #fff; }
+
+
+/* --- Section helpers ----------------------------------------- */
+
+.ci-section {
+  padding: var(--ci-section-desktop) 0;
+  position: relative;
+}
+.ci-section--dark { background: var(--ci-deep-blue); color: #fff; }
+.ci-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--ci-margin-desktop);
+}
+
+@media (max-width: 640px) {
+  .ci-section { padding: var(--ci-section-mobile) 0; }
+  .ci-container { padding: 0 var(--ci-margin-mobile); }
+}
