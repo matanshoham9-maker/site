@@ -1,20 +1,8 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<html lang="en"><head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Course It · Course Building Studio for Creators</title>
-<meta name="description" content="Every creator has a course. Course It is a studio in Tel Aviv — we turn what experts know into branded video courses that sound like them." />
-<link rel="canonical" href="https://courseit.studio/" />
-<meta property="og:title" content="Course It · Every creator has a course." />
-<meta property="og:description" content="A studio for creators. We build branded video courses for experts." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://courseit.studio/" />
-<meta property="og:image" content="https://courseit.studio/assets/hero-bg-web.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon-light.svg" media="(prefers-color-scheme: light)" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
-<link rel="alternate icon" href="assets/favicon-light.svg" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon-light.svg" />
 <link rel="stylesheet" href="ds/colors_and_type.css" />
 <link rel="stylesheet" href="ds/components.css" />
 <style>
@@ -1798,9 +1786,7 @@ a.creator-card { text-decoration: none; color: inherit; display: block; }
   .cta-btn { justify-content: center; }
 }
 
-</style>
-</head>
-<body>
+</style></head><body>
 <div id="root"></div>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
@@ -2450,9 +2436,9 @@ const Services = () => (
    Creators
 ---------------------------------------------------------------- */
 const CREATORS = [
-  { id: "01", tag: "PHOTOGRAPHY", tone: ["#8B5A2B", "#3D2515"],
-    lead: "The", role: "Photographer",
-    desc: "A course built around how you see the world." },
+  { id: "01", tag: "RUNNING", tone: ["#C99A4E", "#6E4E1F"],
+    lead: "Dana", role: "Avni", href: "creator-dana-avni.html",
+    desc: "A course built around belief — running, from the head." },
   { id: "02", tag: "DESIGN", tone: ["#5B7DA8", "#1F3D5C"],
     lead: "The", role: "Designer",
     desc: "A course built around what you create." },
@@ -2485,8 +2471,8 @@ const Creators = () => (
     </div>
 
     <div className="creators__scroll">
-      {CREATORS.map((c) => (
-        <article key={c.id} className="creator-card reveal">
+      {CREATORS.map((c) => { const Card = c.href ? "a" : "article"; return (
+        <Card key={c.id} href={c.href} className="creator-card reveal" style={c.href ? { textDecoration: "none" } : undefined}>
           <div className="creator-card__photo">
             <div className="creator-card__tag">{c.tag}</div>
             <div className="creator-card__no">{c.id} / 06</div>
@@ -2501,8 +2487,8 @@ const Creators = () => (
             <span>{c.lead}</span> <em>{c.role}</em>
           </h3>
           <p className="creator-card__desc">{c.desc}</p>
-        </article>
-      ))}
+        </Card>
+      ); })}
     </div>
 
     <div className="creators__hint reveal">
@@ -2756,7 +2742,7 @@ const JOURNAL = [
     media: "PHOTO · WHY MOST COURSES FAIL",
     kind: "OPINION", date: "JUNE 2026 · 7 MIN",
     title: "Why most courses <em>fail.</em>",
-    lede: "Most people who buy a course never finish it. It\u2019s not a discipline problem — it\u2019s a problem of form." },
+    lede: "Most people who buy a course never finish it. It\u2019s not a discipline problem \u2014 it\u2019s a problem of form." },
 ];
 
 const Journal = () => (
@@ -2887,21 +2873,12 @@ function App() {
   useScrollReveal();
   return (
     <>
-      <Header />
-      <Hero />
-      <Marquee />
-      <About />
-      <Services />
+      <Header /><Hero /><Marquee /><About /><Services />
       <SlotPlaceholder num="06" name="IN EVERY WORLD" />
-      <Team />
-      <CTA />
-      <Form />
-      <Journal />
-      <Foot />
+      <Team /><CTA /><Form /><Journal /><Foot />
     </>
   );
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
-</body>
-</html>
+</body></html>
