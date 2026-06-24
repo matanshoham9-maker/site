@@ -220,6 +220,7 @@ a { color: inherit; }
 .hero__buttons .cta-btn__arrow {
   font-size: 17px;
 }
+.hero__cta-m { display: none; }
 .hero__eyebrow {
   /* Eyebrow component (eyebrow-lines--both) sits inside hero */
   margin-top: 44px;
@@ -1773,9 +1774,13 @@ a.creator-card { text-decoration: none; color: inherit; display: block; }
   .ci-form__submit { justify-content: center; }
   .hero__inner { padding: 110px 20px 40px; justify-content: flex-start; }
   .hero__eyebrow { margin-top: 28px; }
-  .hero__buttons { display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 290px; margin: 32px auto 0; gap: 12px; flex-wrap: nowrap; }
-  .hero__buttons .cta-btn { width: 100%; justify-content: center; }
-  .hero__buttons .cta-btn--ghost { background: rgba(10,26,46,0.28); backdrop-filter: blur(2px); }
+  .hero__buttons { display: none; }
+  .hero__cta-m { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 250px; margin: 30px auto 0; }
+  .hero__cta-m__trigger { width: 100%; justify-content: center; cursor: pointer; border: none; }
+  .hero__cta-m__menu { width: 100%; max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .hero__cta-m.is-open .hero__cta-m__menu { max-height: 360px; }
+  .hero__cta-m__inner { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; }
+  .hero__cta-m__inner a { display: block; text-align: center; padding: 13px; background: rgba(10,26,46,0.34); backdrop-filter: blur(3px); color: #fff; border-radius: 12px; font-family: var(--ci-pixel); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; }
   .hero__corner--bl { left: 20px; }
   .hero__corner--br { right: 20px; }
   .marquee { height: 110px; }
@@ -2298,6 +2303,7 @@ const Header = () => {
 ---------------------------------------------------------------- */
 const Hero = ({ accent }) => {
   const cls = accent === "lime" ? "is-lime" : accent === "white" ? "is-white" : "";
+  const [ctaOpen, setCtaOpen] = useState(false);
   return (
     <section className="hero" id="top">
       <div className="hero__scene">
@@ -2320,6 +2326,20 @@ const Hero = ({ accent }) => {
             <span>DM us on Instagram</span>
             <em className="cta-btn__arrow">→</em>
           </a>
+        </div>
+        <div className={`hero__cta-m reveal ${ctaOpen ? "is-open" : ""}`}>
+          <button type="button" className="cta-btn cta-btn--lime hero__cta-m__trigger" aria-expanded={ctaOpen} onClick={() => setCtaOpen((o) => !o)}>
+            <span>Let's talk</span>
+            <em className="cta-btn__arrow">{ctaOpen ? "×" : "→"}</em>
+          </button>
+          <div className="hero__cta-m__menu">
+            <div className="hero__cta-m__inner">
+              <a href="https://wa.me/972507796439?text=%D7%94%D7%99%D7%99%20Course%20It%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8">WhatsApp</a>
+              <a href="https://www.instagram.com/courseit.studio" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="mailto:play@courseit.studio">Email</a>
+              <a href="#form" onClick={() => setCtaOpen(false)}>Leave your details</a>
+            </div>
+          </div>
         </div>
       </div>
       <div className="hero__corner hero__corner--bl">COURSE BUILDING STUDIO · TEL AVIV · 2026</div>

@@ -119,6 +119,7 @@ const Header = () => {
 ---------------------------------------------------------------- */
 const Hero = ({ accent }) => {
   const cls = accent === "lime" ? "is-lime" : accent === "white" ? "is-white" : "";
+  const [ctaOpen, setCtaOpen] = useState(false);
   return (
     <section className="hero" id="top">
       <div className="hero__scene">
@@ -141,6 +142,20 @@ const Hero = ({ accent }) => {
             <span>DM us on Instagram</span>
             <em className="cta-btn__arrow">→</em>
           </a>
+        </div>
+        <div className={`hero__cta-m reveal ${ctaOpen ? "is-open" : ""}`}>
+          <button type="button" className="cta-btn cta-btn--lime hero__cta-m__trigger" aria-expanded={ctaOpen} onClick={() => setCtaOpen((o) => !o)}>
+            <span>Let's talk</span>
+            <em className="cta-btn__arrow">{ctaOpen ? "×" : "→"}</em>
+          </button>
+          <div className="hero__cta-m__menu">
+            <div className="hero__cta-m__inner">
+              <a href="https://wa.me/972507796439?text=%D7%94%D7%99%D7%99%20Course%20It%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%93%D7%91%D7%A8">WhatsApp</a>
+              <a href="https://www.instagram.com/courseit.studio" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="mailto:play@courseit.studio">Email</a>
+              <a href="#form" onClick={() => setCtaOpen(false)}>Leave your details</a>
+            </div>
+          </div>
         </div>
       </div>
       <div className="hero__corner hero__corner--bl">COURSE BUILDING STUDIO · TEL AVIV · 2026</div>

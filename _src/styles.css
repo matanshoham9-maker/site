@@ -200,6 +200,7 @@ a { color: inherit; }
 .hero__buttons .cta-btn__arrow {
   font-size: 17px;
 }
+.hero__cta-m { display: none; }
 .hero__eyebrow {
   /* Eyebrow component (eyebrow-lines--both) sits inside hero */
   margin-top: 44px;
@@ -1753,9 +1754,13 @@ a.creator-card { text-decoration: none; color: inherit; display: block; }
   .ci-form__submit { justify-content: center; }
   .hero__inner { padding: 110px 20px 40px; justify-content: flex-start; }
   .hero__eyebrow { margin-top: 28px; }
-  .hero__buttons { display: flex; flex-direction: column; align-items: stretch; width: 100%; max-width: 290px; margin: 32px auto 0; gap: 12px; flex-wrap: nowrap; }
-  .hero__buttons .cta-btn { width: 100%; justify-content: center; }
-  .hero__buttons .cta-btn--ghost { background: rgba(10,26,46,0.28); backdrop-filter: blur(2px); }
+  .hero__buttons { display: none; }
+  .hero__cta-m { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 250px; margin: 30px auto 0; }
+  .hero__cta-m__trigger { width: 100%; justify-content: center; cursor: pointer; border: none; }
+  .hero__cta-m__menu { width: 100%; max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .hero__cta-m.is-open .hero__cta-m__menu { max-height: 360px; }
+  .hero__cta-m__inner { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; }
+  .hero__cta-m__inner a { display: block; text-align: center; padding: 13px; background: rgba(10,26,46,0.34); backdrop-filter: blur(3px); color: #fff; border-radius: 12px; font-family: var(--ci-pixel); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; }
   .hero__corner--bl { left: 20px; }
   .hero__corner--br { right: 20px; }
   .marquee { height: 110px; }
