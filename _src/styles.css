@@ -1753,6 +1753,8 @@ a.creator-card { text-decoration: none; color: inherit; display: block; }
   .ci-form__submit { justify-content: center; }
   .hero__inner { padding: 120px 20px 0; }
   .hero__eyebrow { margin-top: 28px; }
+  .hero__buttons { flex-direction: column; align-items: stretch; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto; gap: 12px; flex-wrap: nowrap; }
+  .hero__buttons .cta-btn { width: 100%; justify-content: center; }
   .hero__corner--bl { left: 20px; }
   .hero__corner--br { right: 20px; }
   .marquee { height: 110px; }
