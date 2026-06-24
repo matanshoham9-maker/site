@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import re, io
 
-src = "/sessions/keen-pensive-gates/mnt/outputs/cisrc"
-out = "/sessions/keen-pensive-gates/mnt/Workspace/Course it/שיווק ומיתוג/אתר/site/index-preview.html"
+src = "/sessions/keen-pensive-gates/mnt/Workspace/Course it/אתר/_src"
+out = "/sessions/keen-pensive-gates/mnt/Workspace/Course it/אתר/index-preview.html"
 
 def read(p):
     with io.open(p, "r", encoding="utf-8") as f: return f.read()
@@ -13,27 +13,27 @@ sections = read(src + "/sections.jsx")
 
 # --- replace the JOURNAL array with the 5 real articles ---
 new_journal = '''const JOURNAL = [
-  { href: "article-the-half-life-of-knowledge.html",
+  { href: "articles/the-half-life-of-knowledge/",
     media: "PHOTO · THE HALF-LIFE OF KNOWLEDGE",
     kind: "OPINION", date: "JUNE 2026 · 9 MIN",
     title: "The knowledge you learned <em>has expired.</em>",
     lede: "The half-life of professional knowledge has fallen below the length of a degree. Only knowledge earned in motion stays fresh." },
-  { href: "article-creator-middle-class.html",
+  { href: "articles/creator-middle-class/",
     media: "PHOTO · THE CREATOR MIDDLE CLASS",
     kind: "ESSAY", date: "JUNE 2026 · 9 MIN",
     title: "The creator <em>middle class</em> is here.",
     lede: "For years the story was binary — superstar or amateur. The 2026 data reveals a quiet third thing: stable, real, paying a salary." },
-  { href: "articles/academia-is-outdated.html",
+  { href: "articles/academia-is-outdated/",
     media: "PHOTO · ACADEMIA IS OUTDATED",
     kind: "OPINION", date: "JUNE 2026 · 8 MIN",
     title: "Academia is outdated. <em>Creators aren\\u2019t.</em>",
     lede: "Fewer than a third of Americans still believe a degree is worth the cost. But the hunger to learn just changed address." },
-  { href: "articles/your-knowledge-is-a-product.html",
+  { href: "articles/your-knowledge-is-a-product/",
     media: "PHOTO · YOUR KNOWLEDGE IS A PRODUCT",
     kind: "ESSAY", date: "JUNE 2026 · 6 MIN",
     title: "Your knowledge is <em>a product.</em>",
     lede: "Every day you give away for free what people are willing to pay for. The only question is whether you\\u2019ll package it first." },
-  { href: "articles/why-most-courses-fail.html",
+  { href: "articles/why-most-courses-fail/",
     media: "PHOTO · WHY MOST COURSES FAIL",
     kind: "OPINION", date: "JUNE 2026 · 7 MIN",
     title: "Why most courses <em>fail.</em>",
@@ -52,6 +52,7 @@ app = '''function App() {
       <Marquee />
       <About />
       <Services />
+      <Creators />
       <SlotPlaceholder num="06" name="IN EVERY WORLD" />
       <Team />
       <CTA />

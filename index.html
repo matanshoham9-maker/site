@@ -130,6 +130,7 @@ a { color: inherit; }
 }
 .nav--scrolled .nav__brand-name { text-shadow: none; }
 .nav__links { display: flex; align-items: center; gap: 32px; }
+.nav__burger { display: none; }
 .nav__links a {
   font-family: var(--ci-sans);
   font-size: 14px;
@@ -1752,8 +1753,20 @@ a.creator-card { text-decoration: none; color: inherit; display: block; }
 }
 @media (max-width: 700px) {
   .nav { padding: 16px 20px; }
-  .nav__links { gap: 14px; }
-  .nav__links a:nth-child(n+3):not(.nav__cta) { display: none; }
+  .nav__burger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 10px; background: none; border: none; cursor: pointer; z-index: 120; }
+  .nav__burger span { display: block; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+  .nav__links { position: fixed; inset: 0; flex-direction: column; justify-content: center; align-items: center; gap: 30px; background: var(--ci-deep-blue); transform: translateX(100%); transition: transform .35s ease; z-index: 110; }
+  .nav__links a { color: #fff !important; text-shadow: none !important; font-size: 24px; }
+  .nav__links a::after { display: none !important; }
+  .nav__links a:nth-child(n+3):not(.nav__cta) { display: block; }
+  .nav__cta { background: var(--ci-lime); color: var(--ci-lime-ink) !important; padding: 12px 26px; border-radius: 999px; margin-top: 10px; }
+  .nav--open .nav__links { transform: translateX(0); }
+  .nav--open .nav__burger { color: #fff; position: fixed; top: 18px; right: 20px; }
+  .nav--open .nav__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav--open .nav__burger span:nth-child(2) { opacity: 0; }
+  .nav--open .nav__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hero__corner--bl, .hero__corner--br { display: none; }
+  .marquee__item { font-size: 30px; }
   .form-section { padding: 80px 24px 100px; }
   .ci-form__row { grid-template-columns: 1fr; }
   .ci-form__submit-row { justify-content: stretch; flex-direction: column-reverse; align-items: stretch; }
@@ -2247,6 +2260,7 @@ function useActiveHeaderTheme() {
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const dark = useActiveHeaderTheme();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -2255,18 +2269,22 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const brandColor = dark ? "#F0EEE9" : "#0A0A0A";
+  const close = () => setOpen(false);
   return (
-    <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
-      <a className="nav__brand" href="#top" style={{ color: brandColor }}>
+    <nav className={`nav ${scrolled ? "nav--scrolled" : ""} ${open ? "nav--open" : ""}`}>
+      <a className="nav__brand" href="#top" style={{ color: brandColor }} onClick={close}>
         <span className="nav__brand-mark"><BrandMark dark={dark} /></span>
         <span className="nav__brand-name">COURSE IT</span>
       </a>
+      <button className="nav__burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((o) => !o)} style={{ color: brandColor }}>
+        <span></span><span></span><span></span>
+      </button>
       <div className="nav__links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#creators">Creators</a>
-        <a href="#journal">Journal</a>
-        <a className="nav__cta" href="#form">Let's build →</a>
+        <a href="#about" onClick={close}>About</a>
+        <a href="#services" onClick={close}>Services</a>
+        <a href="#creators" onClick={close}>Creators</a>
+        <a href="#journal" onClick={close}>Journal</a>
+        <a className="nav__cta" href="#form" onClick={close}>Let's build →</a>
       </div>
     </nav>
   );

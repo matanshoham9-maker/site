@@ -84,6 +84,7 @@ function useActiveHeaderTheme() {
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const dark = useActiveHeaderTheme();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -92,18 +93,22 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   const brandColor = dark ? "#F0EEE9" : "#0A0A0A";
+  const close = () => setOpen(false);
   return (
-    <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
-      <a className="nav__brand" href="#top" style={{ color: brandColor }}>
+    <nav className={`nav ${scrolled ? "nav--scrolled" : ""} ${open ? "nav--open" : ""}`}>
+      <a className="nav__brand" href="#top" style={{ color: brandColor }} onClick={close}>
         <span className="nav__brand-mark"><BrandMark dark={dark} /></span>
         <span className="nav__brand-name">COURSE IT</span>
       </a>
+      <button className="nav__burger" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((o) => !o)} style={{ color: brandColor }}>
+        <span></span><span></span><span></span>
+      </button>
       <div className="nav__links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#creators">Creators</a>
-        <a href="#journal">Journal</a>
-        <a className="nav__cta" href="#form">Let's build →</a>
+        <a href="#about" onClick={close}>About</a>
+        <a href="#services" onClick={close}>Services</a>
+        <a href="#creators" onClick={close}>Creators</a>
+        <a href="#journal" onClick={close}>Journal</a>
+        <a className="nav__cta" href="#form" onClick={close}>Let's build →</a>
       </div>
     </nav>
   );
